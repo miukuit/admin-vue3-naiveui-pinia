@@ -1,0 +1,8 @@
+{
+  "name": "admin-vue3-naiveui-pinia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/miukuit/admin-vue3-naiveui-pinia.git",
+  "author": "VisionView <1275919414@qq.com>",
+  "license": "MIT"
+}
