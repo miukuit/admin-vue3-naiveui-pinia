@@ -18,5 +18,25 @@ export const useUserStore = defineStore('user', {
     setUserInfo(userInfo = {}) {
       this.userInfo = { ...this.userInfo, ...userInfo }
     },
+    // 登录
+    async userLogin(loginInfo) {
+      try {
+        let response = {
+          ...loginInfo
+        }
+        return Promise.resolve(response)
+      } catch (e) {
+        console.log(e)
+        return Promise.reject(e)
+      }
+    },
+    // 获取用户信息
+    getUserInfo () {
+
+    },
+    // 登录
+    async userLogout () {
+
+    }
   }
 })

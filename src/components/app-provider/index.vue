@@ -21,12 +21,7 @@
 import { zhCN, dateZhCN, useLoadingBar, useDialog, useMessage, useNotification } from 'naive-ui'
 // 调整主题变量
 const themeOverrides = {
-  common: {
-    primaryColor: 'pink',
-    primaryColorHover: '#316C72E3',
-    primaryColorPressed: '#2B4C59FF',
-    primaryColorSuppl: '#316C7263',
-  },
+  common: {},
 }
 
 const NaiveProviderContent = defineComponent({

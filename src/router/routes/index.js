@@ -1,18 +1,22 @@
 const Layout = () => import('@/layout/index.vue')
 
-
 export const basicRoutes = [
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/index.vue')
+  },
   {
     path: '/',
     name: 'Layout',
     component: Layout,
-    redirect: '/home',
+    redirect: '/welcome',
     children: [
       {
-        name: 'Home',
-        path: 'home',
-        component: () => import('@/views/home/index.vue'),
-        meta: { title: '首页', icon: '', },
+        name: 'Welcome',
+        path: 'welcome',
+        component: () => import('@/views/welcome/index.vue'),
+        meta: { title: '欢迎页', icon: '', },
       }
     ]
   }

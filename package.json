@@ -1,5 +1,5 @@
 {
-  "name": "{{name}}",
+  "name": "admin-vue3-naiveui-pinia",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,6 +16,7 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@vicons/carbon": "^0.12.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "sass": "^1.58.3",
     "unplugin-auto-import": "^0.15.1",

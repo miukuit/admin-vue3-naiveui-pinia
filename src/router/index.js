@@ -11,4 +11,7 @@ export const router = createRouter({
 
 export function setupRouter(app) {
   app.use(router)
+  // 创建路由守卫
+  // TODO
 }
+export default router
