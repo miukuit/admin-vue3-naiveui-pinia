@@ -16,7 +16,7 @@
                 @keydown.enter.prevent="loginConfirm"
               >
                 <template #prefix>
-                  <n-icon :component="User" />
+                  <n-icon :component="UserOutlined" />
                 </template>
               </n-input>
             </n-form-item>
@@ -26,7 +26,7 @@
                 @keydown.enter.prevent="loginConfirm"
               >
                 <template #prefix>
-                  <n-icon :component="Locked" />
+                  <n-icon :component="LockOutlined" />
                 </template>
               </n-input>
             </n-form-item>
@@ -36,7 +36,7 @@
                 @keydown.enter.prevent="loginConfirm"
               >
                 <template #prefix>
-                  <n-icon :component="ManageProtection" />
+                  <n-icon :component="SafetyOutlined" />
                 </template>
               </n-input>
               <n-image :src="verifyCodeImg" class="code-img" alt="验证码" />
@@ -52,10 +52,11 @@
 </template>
 
 <script setup>
-import { User, Locked, ManageProtection } from '@vicons/carbon'
+import { UserOutlined, LockOutlined, SafetyOutlined } from '@vicons/antd'
 import { useUserStore } from '@/store'
-import illustrationImg  from '@/assets/img/work.svg'
 import { throttle } from '@/utils'
+import { addDynamicRoutes } from '@/router'
+import illustrationImg  from '@/assets/img/work.svg'
 
 const router = useRouter()
 // const route = useRoute()
@@ -87,23 +88,28 @@ const loginConfirm = throttle(e => {
   e.preventDefault()
   formRef.value?.validate(async (errors) => {
     if (!errors) {
-      $message.loading('登录中...')
-      loginLoading.value = true
-      let { userName, password, verifyCode } = formData.value
-      const params = {
-        userName,
-        password,
-        verifyCode
-      }
       try {
+        $message.loading('登录验证中...')
+        loginLoading.value = true
+        let { userName, password, verifyCode } = formData.value
+        const params = {
+          userName,
+          password,
+          verifyCode
+        }
         const { code, data, message } = await userStore.userLogin(params)
         $message.destroyAll()
-        if (code === 0) {
-          $message.success('登录成功，即将进入系统')
+        // 设置token
+        // if (code === 0) {
+        if (true) {
+          await addDynamicRoutes() // 添加动态路由
+          $message.success('登录成功')
           router.replace('/');
         } else {
           $message.info(message || '登录失败')
         }
+      } catch (error) {
+        console.error(error)
       } finally {
         loginLoading.value = false
       }

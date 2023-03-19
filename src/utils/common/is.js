@@ -11,3 +11,7 @@ export function isUndef(val) {
 export function isNullOrUndef(val) {
   return isNull(val) || isUndef(val)
 }
+
+export function isNullOrWhitespace(val) {
+  
+}
