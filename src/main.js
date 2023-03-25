@@ -1,7 +1,10 @@
 import '@/styles/reset.css'
+import 'virtual:svg-icons-register'
 
 import { createApp } from 'vue'
 import App from './App.vue'
+
+import AppIcon from '@/components/app-icon'
 
 import router, { setupRouter } from '@/router'
 import { setupStore  } from '@/store'
@@ -17,4 +20,6 @@ setupRouter(app)
 // 路由准备就绪后挂载 APP 实例
 await router.isReady()
 
-app.mount('#app', true)
+app
+  .use(AppIcon)
+  .mount('#app', true)

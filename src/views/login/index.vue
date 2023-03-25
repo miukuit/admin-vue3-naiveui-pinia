@@ -52,7 +52,6 @@
 </template>
 
 <script setup>
-import { UserOutlined, LockOutlined, SafetyOutlined } from '@vicons/antd'
 import { useUserStore } from '@/store'
 import { throttle } from '@/utils'
 import { addDynamicRoutes } from '@/router'

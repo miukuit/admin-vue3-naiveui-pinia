@@ -15,12 +15,53 @@
           <component :is="MenuFoldOutlined"></component>
         </n-icon>
       </div>
+      <!-- 面包屑 -->
+      <n-breadcrumb>
+        <template v-for="(item, index) in breadcrumbList" :key="index">
+          <n-breadcrumb-item v-if="item.meta.title">
+            <n-dropdown
+              v-if="item.children.length"
+              :options="item.children"
+              @select="dropdownSelect"
+            >
+              <span class="link-text">
+                <component v-if="item.meta.icon" :is="item.meta.icon" />
+                {{ item.meta.title }}
+              </span>
+            </n-dropdown>
+            <span class="link-text" v-else>
+              <component v-if="item.meta.icon" :is="item.meta.icon" />
+              {{ item.meta.title }}
+            </span>
+          </n-breadcrumb-item>
+        </template>
+      </n-breadcrumb>
+    </div>
+    <div class="header-right">
+      <!-- 切换全屏 -->
+      <div>
+        <n-tooltip placement="bottom">
+          <template #trigger>
+            <n-icon size="18" @click="toggleFullScreen">
+              <component :is="fullscreenIcon" />
+            </n-icon>
+          </template>
+          <span>全屏</span>
+        </n-tooltip>
+      </div>
+      <!-- 个人中心 -->
     </div>
   </div>
 </template>
 
 <script setup>
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@vicons/antd'
+
+const route = useRoute()
+const router = useRouter()
+
+const emits = defineEmits([
+  'update:collapsed'
+])
 const props = defineProps({
   collapsed: {
     type: Boolean
@@ -30,12 +71,30 @@ const props = defineProps({
     default: 60
   }
 })
-const emits = defineEmits([
-  'update:collapsed'
-])
 
-function setMenuStatus() {
+
+
+const breadcrumbList = computed(() => {
+  return route.matched
+})
+const fullscreenIcon = ref('FullscreenOutlined')
+
+function setMenuStatus () {
   emits('update:collapsed', !props.collapsed)
+}
+
+function dropdownSelect (key) {
+  router.push({ name: key });
+}
+
+const toggleFullScreen =  () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
 }
 </script>
 

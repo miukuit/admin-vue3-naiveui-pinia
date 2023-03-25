@@ -24,7 +24,10 @@
       </n-layout-header>
       <!-- 内容 -->
       <n-layout-content>
-
+        <svg-icon icon="logo" />
+        --------------
+        <icon-ant-design:fullscreen-exit-outlined  />
+        <icon-custom-logo />
       </n-layout-content>
       <!-- 回到顶部 -->
       <n-back-top :right="50" />
