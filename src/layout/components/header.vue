@@ -8,12 +8,8 @@
     <div class="header-left">
       <!-- 菜单收起 -->
       <div class="header-left-menu" @click="setMenuStatus">
-        <n-icon size="28" v-if="collapsed">
-          <component :is="MenuUnfoldOutlined"></component>
-        </n-icon>
-        <n-icon size="28" v-else>
-          <component :is="MenuFoldOutlined"></component>
-        </n-icon>
+        <app-icon :size="28" icon="ant-design:menu-unfold-outlined" v-if="collapsed" />
+        <app-icon :size="28" icon="ant-design:menu-fold-outlined" v-else />
       </div>
       <!-- 面包屑 -->
       <n-breadcrumb>

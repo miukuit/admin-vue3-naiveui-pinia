@@ -46,14 +46,13 @@ const menuWidth = ref(220)
 const collapsedWidth = ref(60)
 const inverted = ref(true) // 使用反转背景色, 增加对比度
 
-console.log(antIcon.icons.icons)
+// console.log(antIcon.icons.icons)
 const allAntIcon = ref(antIcon.icons.icons)
 const iconName = ref('ant-design:alert-outlined')
 
 const selectOptions = computed(() => {
   let result = []
   for (const key in allAntIcon.value) {
-    console.log(key)
     result.push({
       label: `${key}`,
       value: `ant-design:${key}`,

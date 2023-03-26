@@ -16,7 +16,7 @@
                 @keydown.enter.prevent="loginConfirm"
               >
                 <template #prefix>
-                  <n-icon :component="UserOutlined" />
+                  <app-icon icon="ant-design:user-outlined" />
                 </template>
               </n-input>
             </n-form-item>
@@ -26,7 +26,7 @@
                 @keydown.enter.prevent="loginConfirm"
               >
                 <template #prefix>
-                  <n-icon :component="LockOutlined" />
+                  <app-icon icon="ant-design:lock-outlined" />
                 </template>
               </n-input>
             </n-form-item>
@@ -36,7 +36,7 @@
                 @keydown.enter.prevent="loginConfirm"
               >
                 <template #prefix>
-                  <n-icon :component="SafetyOutlined" />
+                  <app-icon icon="ant-design:key-outlined" />
                 </template>
               </n-input>
               <n-image :src="verifyCodeImg" class="code-img" alt="验证码" />
