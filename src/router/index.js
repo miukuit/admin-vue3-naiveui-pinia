@@ -1,20 +1,17 @@
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { basicRoutes, NOT_FOUND_ROUTE, EMPTY_ROUTE } from './routes'
 
 import { useUserStore, usePermissionStore } from '@/store'
 import { isNullOrWhitespace } from '@/utils'
 
-
-const isHash = false
-
 export const router = createRouter({
-  history: isHash ? createWebHashHistory('/') : createWebHistory('/'),
+  history: createWebHistory('/'),
   routes: basicRoutes,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
 
 export async function setupRouter(app) {
-  await addDynamicRoutes() // 添加动态路由
+  // await addDynamicRoutes() // 添加动态路由
   app.use(router)
 }
 

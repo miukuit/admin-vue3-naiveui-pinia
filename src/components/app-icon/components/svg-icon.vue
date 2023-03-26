@@ -4,7 +4,7 @@
   </svg>
 </template>
 
-<script setup name="SvgIcon">
+<script setup>
 const props = defineProps({
   icon: {
     type: String,
@@ -19,5 +19,5 @@ const props = defineProps({
     default: '#333',
   },
 })
-const symbolId = computed(() => `#icon-custom-${props.icon}`)
+const symbolId = computed(() => `#icon-${props.icon}`)
 </script>

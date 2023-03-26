@@ -24,10 +24,9 @@
       </n-layout-header>
       <!-- 内容 -->
       <n-layout-content>
-        <svg-icon icon="logo" />
-        <icon-custom-logo />
-        --------------
-        <icon-ant-design:fullscreen-exit-outlined  />
+        <app-icon type="svg" icon="logo" />
+        <app-icon :icon="iconName" />
+        <n-select v-model:value="iconName" :options="selectOptions" />
       </n-layout-content>
       <!-- 回到顶部 -->
       <n-back-top :right="50" />
@@ -40,10 +39,28 @@ import SiderLogo from './components/logo.vue'
 import siderMenu from './components/menu.vue';
 import PageHeader from './components/header.vue';
 
+import * as antIcon from '@iconify-json/ant-design'
+
 const collapsed = ref(false)
 const menuWidth = ref(220)
 const collapsedWidth = ref(60)
 const inverted = ref(true) // 使用反转背景色, 增加对比度
+
+console.log(antIcon.icons.icons)
+const allAntIcon = ref(antIcon.icons.icons)
+const iconName = ref('ant-design:alert-outlined')
+
+const selectOptions = computed(() => {
+  let result = []
+  for (const key in allAntIcon.value) {
+    console.log(key)
+    result.push({
+      label: `${key}`,
+      value: `ant-design:${key}`,
+    })
+  }
+  return result
+})
 
 </script>
 
