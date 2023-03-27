@@ -51,14 +51,10 @@ const allAntIcon = ref(antIcon.icons.icons)
 const iconName = ref('ant-design:alert-outlined')
 
 const selectOptions = computed(() => {
-  let result = []
-  for (const key in allAntIcon.value) {
-    result.push({
-      label: `${key}`,
-      value: `ant-design:${key}`,
-    })
-  }
-  return result
+  return Object.entries(allAntIcon.value).map(([key]) => ({
+    label: key,
+    value: `ant-design:${key}`,
+  }))
 })
 
 </script>
