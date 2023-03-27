@@ -27,6 +27,8 @@
         <app-icon type="svg" icon="logo" />
         <app-icon :icon="iconName" />
         <n-select v-model:value="iconName" :options="selectOptions" />
+        <div>asdasd</div>
+        <icon-select v-model:value="iconName" />
       </n-layout-content>
       <!-- 回到顶部 -->
       <n-back-top :right="50" />
@@ -40,6 +42,8 @@ import siderMenu from './components/menu.vue';
 import PageHeader from './components/header.vue';
 
 import * as antIcon from '@iconify-json/ant-design'
+
+import IconSelect from '@/components/icon-select/index.vue'
 
 const collapsed = ref(false)
 const menuWidth = ref(220)
