@@ -1,4 +1,5 @@
 import '@/styles/reset.css'
+import '@/styles/global.scss'
 import 'virtual:svg-icons-register'
 
 import { createApp } from 'vue'

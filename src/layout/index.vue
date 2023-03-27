@@ -24,14 +24,8 @@
       </n-layout-header>
       <!-- 内容 -->
       <n-layout-content>
-        <app-icon type="svg" icon="logo" />
-        <app-icon :icon="iconName" />
-        <n-select v-model:value="iconName" :options="selectOptions" />
-        <div>asdasd</div>
-        <icon-select v-model:value="iconName" />
+        <PageMain />
       </n-layout-content>
-      <!-- 回到顶部 -->
-      <n-back-top :right="50" />
     </n-layout>
   </n-layout>
 </template>
@@ -40,27 +34,12 @@
 import SiderLogo from './components/logo.vue'
 import siderMenu from './components/menu.vue';
 import PageHeader from './components/header.vue';
-
-import * as antIcon from '@iconify-json/ant-design'
-
-import IconSelect from '@/components/icon-select/index.vue'
+import PageMain from './components/main.vue';
 
 const collapsed = ref(false)
 const menuWidth = ref(220)
-const collapsedWidth = ref(60)
+const collapsedWidth = ref(50)
 const inverted = ref(true) // 使用反转背景色, 增加对比度
-
-// console.log(antIcon.icons.icons)
-const allAntIcon = ref(antIcon.icons.icons)
-const iconName = ref('ant-design:alert-outlined')
-
-const selectOptions = computed(() => {
-  return Object.entries(allAntIcon.value).map(([key]) => ({
-    label: key,
-    value: `ant-design:${key}`,
-  }))
-})
-
 </script>
 
 <style lang="scss" scoped>
