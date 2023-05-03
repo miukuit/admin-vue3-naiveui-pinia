@@ -35,23 +35,20 @@
     </div>
     <div class="header-right">
       <!-- 切换全屏 -->
-      <div>
-        <n-tooltip placement="bottom">
-          <template #trigger>
-            <n-icon size="18" @click="toggleFullScreen">
-              <component :is="fullscreenIcon" />
-            </n-icon>
-          </template>
-          <span>全屏</span>
-        </n-tooltip>
-      </div>
+      <n-tooltip placement="bottom" :delay="800">
+        <template #trigger>
+          <div class="icon-item full-icon" @click="toggleFullScreen">
+            <app-icon :icon="fullscreenIcon" :size="25"  />
+          </div>
+        </template>
+        <span>全屏</span>
+      </n-tooltip>
       <!-- 个人中心 -->
     </div>
   </div>
 </template>
 
 <script setup>
-
 const route = useRoute()
 const router = useRouter()
 
@@ -73,7 +70,7 @@ const props = defineProps({
 const breadcrumbList = computed(() => {
   return route.matched
 })
-const fullscreenIcon = ref('FullscreenOutlined')
+const fullscreenIcon = ref('ant-design:fullscreen-outlined')
 
 function setMenuStatus () {
   emits('update:collapsed', !props.collapsed)
@@ -85,10 +82,12 @@ function dropdownSelect (key) {
 
 const toggleFullScreen =  () => {
   if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
+    document.documentElement.requestFullscreen(); // 置为全屏模式
+    fullscreenIcon.value = 'ant-design:fullscreen-exit-outlined'
   } else {
     if (document.exitFullscreen) {
-      document.exitFullscreen();
+      document.exitFullscreen(); // 全屏模式切换到窗口模式
+      fullscreenIcon.value = 'ant-design:fullscreen-outlined'
     }
   }
 }
@@ -97,6 +96,7 @@ const toggleFullScreen =  () => {
 <style lang="scss" scoped>
 .header {
   width: 100%;
+  padding-right: 10px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -109,6 +109,21 @@ const toggleFullScreen =  () => {
     align-items: center;
     &-menu {
       width: 50px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: .3s;
+      &:hover {
+        background-color: rgb(159 159 159 / 10%);
+      }
+    }
+  }
+  &-right {
+    height: 100%;
+    .icon-item {
+      width: 45px;
       height: 100%;
       display: flex;
       align-items: center;
