@@ -49,6 +49,8 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue"
+
 const route = useRoute()
 const router = useRouter()
 
@@ -65,29 +67,33 @@ const props = defineProps({
   }
 })
 
-
-
 const breadcrumbList = computed(() => {
   return route.matched
 })
 const fullscreenIcon = ref('ant-design:fullscreen-outlined')
 
+
+onMounted(() => {
+  // 监听全屏切换事件
+  document.addEventListener('fullscreenchange', toggleFullscreenIcon);
+})
+// 设置更新菜单收起按钮
 function setMenuStatus () {
   emits('update:collapsed', !props.collapsed)
 }
-
+const toggleFullscreenIcon = () => {
+  fullscreenIcon.value = document.fullscreenElement !== null ? 'ant-design:fullscreen-exit-outlined' : 'ant-design:fullscreen-outlined'
+}
 function dropdownSelect (key) {
   router.push({ name: key });
 }
-
+// 设置全屏
 const toggleFullScreen =  () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen(); // 置为全屏模式
-    fullscreenIcon.value = 'ant-design:fullscreen-exit-outlined'
   } else {
     if (document.exitFullscreen) {
       document.exitFullscreen(); // 全屏模式切换到窗口模式
-      fullscreenIcon.value = 'ant-design:fullscreen-outlined'
     }
   }
 }
@@ -122,6 +128,7 @@ const toggleFullScreen =  () => {
   }
   &-right {
     height: 100%;
+    display: flex;
     .icon-item {
       width: 45px;
       height: 100%;
