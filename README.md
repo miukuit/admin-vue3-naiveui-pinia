@@ -1,6 +1,9 @@
 # Use node Version
 v18.15.0
 
+# Git提交注意事项
+> git config --global core.autocrlf true
+
 
 # Methods Or API
 - [x] 数据精度处理
